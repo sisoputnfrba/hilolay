@@ -8,7 +8,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <ucontext.h>
+
+#ifdef __APPLE__
+	#include <sys/ucontext.h>
+#else
+	#include <ucontext.h>
+#endif
+
 #include <unistd.h>
 
 /* Error code sent when you cannot create more ULTs */
