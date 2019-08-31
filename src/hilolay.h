@@ -9,11 +9,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#ifdef __APPLE__
-	#include <sys/ucontext.h>
-#else
-	#include <ucontext.h>
-#endif
+#include <ucontext.h>
 
 #include <unistd.h>
 
