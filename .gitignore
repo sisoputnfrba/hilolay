@@ -57,3 +57,9 @@ ults
 # CLion files
 */.idea/*
 */cmake-build-debug/*
+
+
+# Eclipse
+.cproject
+.project
+.settings/
