@@ -8,10 +8,7 @@ MAJOR := 0
 MINOR := 1
 NAME := hilolay
 VERSION := $(MAJOR).$(MINOR)
-SRC=src
-DEST=bin
-TEST=test
-###########
+BUILD=bin
 
 all: clean hilolay.so
 
@@ -22,14 +19,15 @@ clean:
 	$(RM) -r bin/
 	mkdir -p bin
 
-hilolay.o:
-	gcc -c -Wall $(CFLAGS) -fpic hilolay.c -o bin/hilolay.o
+$(NAME).o:
+	$(CC) -c -Wall $(CFLAGS) -fpic $(NAME).c -o $(BUILD)/$(NAME).o
 
-hilolay.so: hilolay.o
-	gcc -shared -o bin/libhilolay.so bin/hilolay.o
+$(NAME).so: $(NAME).o
+	$(CC) -shared -o $(BUILD)/lib$(NAME).so $(BUILD)/$(NAME).o
+
+### TESTS ###
+simple: $(NAME).so
+	$(CC) -L./$(BUILD)/ -Wall $(CFLAGS) -o $(BUILD)/simple simple-example.c -l$(NAME)
 
 test: clean simple
-
-simple: hilolay.so
-	gcc -L./bin/ -Wall $(CFLAGS) -o bin/simple simple-example.c -lhilolay
-	./bin/simple
+	./$(BUILD)/simple
