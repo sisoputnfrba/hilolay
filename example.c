@@ -7,7 +7,7 @@ void recursiva(int cant) {
 void test1() {
     int i, tid;
 
-    for (i = 0; i < 30; i++) {
+    for (i = 0; i < 10; i++) {
         tid = th_get_tid();
         printf("Soy el ult %d mostrando el numero %d \n", tid, i);
         usleep(5000 * i * tid); /* Randomizes the sleep, so it gets larger after a few iterations */
@@ -22,7 +22,7 @@ void test1() {
 void test2() {
     int i, tid;
 
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 5; i++) {
         tid = th_get_tid();
         printf("Soy el ult %d mostrando el numero %d \n", tid, i);
         usleep(2000 * i * tid); /* Randomizes the sleep, so it gets larger after a few iterations */
@@ -35,9 +35,8 @@ void main() {
     int i;
 
     lib_init();
-    for(i=0; i < 3; i++) {
-        th_create(test1);
-        th_create(test2);
-    }
+	th_create(test1);
+	th_create(test2);
+
     th_return(0);
 }
