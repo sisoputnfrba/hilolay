@@ -26,8 +26,8 @@ $(NAME).so: $(NAME).o
 	$(CC) -shared -o $(BUILD)/lib$(NAME).so $(BUILD)/$(NAME).o
 
 ### TESTS ###
-simple: $(NAME).so
-	$(CC) -L./$(BUILD)/ -Wall $(CFLAGS) -o $(BUILD)/simple simple-example.c -l$(NAME)
+example: $(NAME).so
+	$(CC) -L./$(BUILD)/ -Wall $(CFLAGS) -o $(BUILD)/example example.c -l$(NAME)
 
-test: clean simple
-	./$(BUILD)/simple
+test: clean example
+	./$(BUILD)/example

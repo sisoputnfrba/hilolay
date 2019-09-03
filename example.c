@@ -1,5 +1,4 @@
-#include "../hilolay/hilolay.h"
-
+#include "hilolay.h"
 
 void recursiva(int cant) {
     if(cant > 0) recursiva(cant - 1);
@@ -36,7 +35,7 @@ void main() {
     int i;
 
     lib_init();
-    for(i=0; i < 20; i++) {
+    for(i=0; i < 3; i++) {
         th_create(test1);
         th_create(test2);
     }
