@@ -1,4 +1,7 @@
+#include <stdio.h>
 #include "hilolay.h"
+
+
 
 /* Initializes the ULT library
  * The first thread will be... your main function! */

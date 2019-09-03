@@ -58,6 +58,9 @@ ults
 */.idea/*
 */cmake-build-debug/*
 
+# Build files
+bin/
+
 
 # Eclipse
 .cproject

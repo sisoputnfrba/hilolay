@@ -1,5 +1,5 @@
-#ifndef HILOLAY_H
-	#define HILOLAY_H
+#ifndef hilolay_h__
+	#define hilolay_h__
 
 	#include <assert.h>
 	#include <signal.h>
@@ -68,7 +68,7 @@
 	static struct TCB *READY_QUEUE_TAIL = NULL;
 
 	/* Lib functions */
-	void lib_init(void);
+	extern void lib_init(void);
 	void th_return(int);
 	bool th_yield(void);
 	int th_create(void (*f)(void));
@@ -88,4 +88,4 @@
 	int lib_get_time();
 	void lib_summarize_burst();
 
-#endif /* HILOLAY_H */
+#endif // hilolay_h__
