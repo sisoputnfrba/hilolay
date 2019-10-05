@@ -1,4 +1,7 @@
+#include "hilolay_internal.h"
+
 #include <stdio.h>
+#include "hilolay_alumnos.h"
 #include "hilolay.h"
 
 /* Initializes the ULT library
@@ -74,8 +77,6 @@ struct TCB* lib_get_next_ult() {
 /* Finishes an ult */
 static void th_stop(void) {
     lib_summarize_burst();
-    printf("I am ult number %d. Total execution time: %d. Last burst: %d\n", th_get_tid(), current_ult->execution_time, current_ult->last_burst);
-    lib_log("Finishing thread");
     th_return(0);
 }
 
@@ -91,7 +92,6 @@ int th_create(void (*f)(void)) {
 
     for (new_ult = &ults[0];; new_ult++) {
         if (new_ult == &ults[MAX_ULTS]) {
-            lib_log("Cannot create a new ULTs!");
             return ERROR_TOO_MANY_ULTS;
         } else if (new_ult->state == FREE) {
             break;
@@ -102,7 +102,6 @@ int th_create(void (*f)(void)) {
     lib_write_TCB(new_ult, NEXT_ID++, READY);
     lib_enqueue(new_ult);
 
-    lib_log("New thread was created");
     if(SCHEDULE_IMMEDIATELY) {
         th_yield();
     }
@@ -161,14 +160,12 @@ void lib_round_robin_init() {
 
 /* Handles the end of a quantum */
 void lib_end_of_quantum_handler() {
-    printf("I am ult number %d switching context \n", th_get_tid());
     alarm(QUANTUM);
     th_yield();
-    printf("Restarting ult number %d\n", th_get_tid());
 }
 
 /* Returns the running thread id */
-int th_get_tid(void) {
+int hilolay_get_tid(void) {
     return current_ult->id;
 }
 
@@ -182,12 +179,6 @@ void lib_write_TCB(struct TCB* tcb, int id, enum State state) {
     tcb->execution_time = 0;
 }
 
-/* Prints a message */
-void lib_log(char *message) {
-    if (VERBOSE) {
-        printf("\n** %s **\n\n", message);
-    }
-}
 
 /* Checks if a ult is the main thread */
 bool lib_is_main_thread(struct TCB* ult) {
@@ -204,4 +195,8 @@ void lib_summarize_burst() {
     int last_burst = lib_get_time() - current_ult->burst_start;
     current_ult->execution_time += last_burst;
     current_ult->last_burst = last_burst;
+}
+
+void init_internal(struct hilolay_operations* ops){
+	lib_init();
 }

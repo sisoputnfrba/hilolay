@@ -20,14 +20,15 @@ clean:
 	mkdir -p bin
 
 $(NAME).o:
-	$(CC) -c -Wall $(CFLAGS) -fpic $(NAME).c -o $(BUILD)/$(NAME).o
+	$(CC) -c -Wall $(CFLAGS) -fpic $(NAME)_internal.c -o $(BUILD)/$(NAME).o
 
 $(NAME).so: $(NAME).o
 	$(CC) -shared -o $(BUILD)/lib$(NAME).so $(BUILD)/$(NAME).o
 
-### TESTS ###
-example: $(NAME).so
-	$(CC) -L./$(BUILD)/ -Wall $(CFLAGS) -o $(BUILD)/example example.c -l$(NAME)
-
-test: clean example
-	./$(BUILD)/example
+install:
+	mkdir -p /usr/local/include/hilolay/
+	cp $(NAME)_internal.h /usr/local/include/hilolay/internal.h
+	cp $(NAME).h /usr/local/include/hilolay/hilolay.h
+	cp $(NAME)_alumnos.h /usr/local/include/hilolay/alumnos.h
+	chmod 0755 /usr/local/include/hilolay/*
+	cp $(BUILD)/lib$(NAME).so /usr/local/lib/lib$(NAME).so
