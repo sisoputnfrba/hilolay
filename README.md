@@ -10,6 +10,7 @@ Hilolay (se pronuncia "Hilo Light") es una pequeña biblioteca de ULTs con fines
 
 Ver https://github.com/sisoputnfrba/hilolay-example
 
-# Documentación
+# Próximamente
 
-Próximamente
+- Más documentación (pull requests son bienvenidos)
+- Agregado de wait y signal en la interfaz
