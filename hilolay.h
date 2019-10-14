@@ -20,22 +20,32 @@
 	void hilolay_init(void);
 
 	/**
-	 * TODO
+	 * Starts an hilolay thread
 	 */
 	int hilolay_create(hilolay_t *thread, const hilolay_attr_t *attr, void *(*start_routine)(void *), void *arg);
 
 	/**
-	 * TODO
+	 * Forces a Thread scheduled swap
 	 */
 	int hilolay_yield(void);
 
 	/**
-	 * TODO
+	 * Joins the given `thread` to the current thread.
 	 */
 	int hilolay_join(hilolay_t *thread);
 
 	/**
-	 * TODO
+	 * Returns the tid of the current thread.
 	 */
 	int hilolay_get_tid(void);
+
+	/**
+	 * Does a wait operation over a semaphore. It blocks the thread if no resources available.
+	 */
+	int hilolay_wait(char *sem_name);
+
+	/**
+	 * Does a signal operation over a semaphore.
+	 */
+	int hilolay_signal(char *sem_name);
 #endif // hilolay_h__
