@@ -8,6 +8,15 @@ Con ese objetivo en mente, Hilolay posee una interfaz interna bien definida que 
 
 `make && sudo make install` 
 
+# Interfaz de Hilolay
+- `void hilolay_init(void)`
+- `hilolay_create(hilolay_t *, const hilolay_attr_t *, void *(*start_routine)(void *), void *arg)`
+- `hilolay_yield(void)`
+- `hilolay_join(hilolay_t *)`
+- `hilolay_get_tid(void)`
+- `hilolay_wait(char *)`
+- `hilolay_signal(char *)`
+
 # Interfaz Interna de Planificación
 
 ## Inicialización
