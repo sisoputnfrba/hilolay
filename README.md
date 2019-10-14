@@ -16,6 +16,7 @@ Con ese objetivo en mente, Hilolay posee una interfaz interna bien definida que 
 - `hilolay_get_tid(void)`
 - `hilolay_wait(char *)`
 - `hilolay_signal(char *)`
+- `hilolay_close(void)`
 
 # Interfaz Interna de Planificación
 
@@ -34,7 +35,7 @@ Finalmente, también se deberá implementar `suse_schedule_next` quien determina
 ## Finalización
 Como mencionamos antes, las bibliotecas de hilos suelen implementar un _join_, el cual será realizado con `suse_join` para interactuar con la metadata. El mismo deberá bloquear el thead esperando que el indicado termine.
 
-Por otro lado, hilolay luego de cada finalización de un hilo, invocará a `suse_close` para asegurarse que la extensión de planificación pueda liberar los recursos que hayan sido tomados.
+Por otro lado, hilolay luego de cada finalización de un hilo, invocará a `suse_close` para asegurarse que la extensión de planificación pueda liberar los recursos que hayan sido tomados. Tener en cuenta que si luego de un `suse_close` no se posee ningún hilo activo, se deberá a proceder a liberar todos los recursos en uso para metadatos.
 
 # Ejemplos de uso
 Ver https://github.com/sisoputnfrba/hilolay-example

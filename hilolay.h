@@ -48,4 +48,10 @@
 	 * Does a signal operation over a semaphore.
 	 */
 	int hilolay_signal(char *sem_name);
+
+	/**
+	 * De-Initialize the library structures.
+	 * Warning: Any other call made after hilolay_close will have undefined behaviour.
+	 */
+	int hilolay_close(void);
 #endif // hilolay_h__

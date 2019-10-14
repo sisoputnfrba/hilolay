@@ -134,3 +134,7 @@ int hilolay_wait(char *sem_name){
 int hilolay_signal(char *sem_name){
     return main_ops->suse_signal(hilolay_get_tid(), sem_name);
 }
+
+int hilolay_close(void){
+    return main_ops->suse_close(hilolay_get_tid());
+}
