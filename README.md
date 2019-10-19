@@ -16,7 +16,7 @@ Con ese objetivo en mente, Hilolay posee una interfaz interna bien definida que 
 - `hilolay_get_tid(void)`
 - `hilolay_wait(char *)`
 - `hilolay_signal(char *)`
-- `hilolay_close(void)`
+- `hilolay_return(int)`
 
 # Interfaz Interna de Planificación
 

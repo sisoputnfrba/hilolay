@@ -50,8 +50,8 @@
 	int hilolay_signal(char *sem_name);
 
 	/**
-	 * De-Initialize the library structures.
-	 * Warning: Any other call made after hilolay_close will have undefined behaviour.
+	 * Returns and closes a thread
+	 * Note: Replaces a return statement on the original thread that called hilolay_init.
 	 */
-	int hilolay_close(void);
+	int hilolay_return(int);
 #endif // hilolay_h__
