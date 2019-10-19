@@ -33,9 +33,9 @@ De forma análoga a otras bibliotecas de hilos, la interfaz plantea implementar 
 Finalmente, también se deberá implementar `suse_schedule_next` quien determinará el próximo ULT que deberá ejecutarse, dado el contexto en el que se llame la misma.
 
 ## Finalización
-Como mencionamos antes, las bibliotecas de hilos suelen implementar un _join_, el cual será realizado con `suse_join` para interactuar con la metadata. El mismo deberá bloquear el thead esperando que el indicado termine.
+Como mencionamos antes, las bibliotecas de hilos suelen implementar un _join_, el cual será realizado con `suse_join` para interactuar con la metadata. El mismo deberá marcar el thread como bloqueado hasta que termine.
 
-Por otro lado, hilolay luego de cada finalización de un hilo, invocará a `suse_close` para asegurarse que la extensión de planificación pueda liberar los recursos que hayan sido tomados. Tener en cuenta que si luego de un `suse_close` no se posee ningún hilo activo, se deberá a proceder a liberar todos los recursos en uso para metadatos.
+Por otro lado, hilolay luego de cada finalización de un hilo, invocará a `suse_close` para asegurarse que la extensión de planificación pueda liberar los recursos que hayan sido tomados. Tener en cuenta que si luego de un `suse_close` no se posee ningún hilo activo, se deberá a proceder a liberar todos los recursos en uso para metadatos (conexiones, etc).
 
 # Ejemplos de uso
 Ver https://github.com/sisoputnfrba/hilolay-example
