@@ -123,16 +123,13 @@ int hilolay_join(hilolay_t *thread){
 }
 
 int hilolay_wait(char *sem_name){
-    int sem_not_adquired = main_ops->suse_wait(hilolay_get_tid(), sem_name);
-    if(sem_not_adquired) {
-        hilolay_yield();
-        return 0;
-    }
-    return 0;
+    main_ops->suse_wait(hilolay_get_tid(), sem_name);
+	return hilolay_yield();
 }
 
 int hilolay_signal(char *sem_name){
-    return main_ops->suse_signal(hilolay_get_tid(), sem_name);
+    main_ops->suse_signal(hilolay_get_tid(), sem_name);
+	return hilolay_yield();
 }
 
 int hilolay_return(int val){
