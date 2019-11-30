@@ -125,7 +125,7 @@ int hilolay_join(hilolay_t *thread){
 
 hilolay_sem_t* hilolay_sem_open(char *name){
     hilolay_sem_t* sem = malloc(sizeof(hilolay_sem_t));
-    sem->name = malloc(strlen(name));
+    sem->name = malloc(strlen(name)+1);
     stpcpy(sem->name, name);
     return sem;
 }
